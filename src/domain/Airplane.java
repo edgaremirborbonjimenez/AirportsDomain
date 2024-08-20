@@ -1,30 +1,24 @@
 package domain;
 
+import people.Passenger;
+import people.Pilot;
+import people.Stewardess;
+
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Airplane {
     private String id;
-    private String origin;
-    private String destination;
-    private LinkedList<Passenger> passengers;
-    private LinkedList<Pilot> pilots;
-    private LinkedList<Stewardess> stewards;
-    private LinkedList<SeatGeneral> seatGenerals;
-    private LinkedList<SeatPremium> seatPremiums;
+    private Flight flight;
+    private List<Seat> seats;
+    private List<Stewardess> steward;
+    private List<Pilot> pilots;
 
     public Airplane() {
-        this.passengers = new LinkedList<>();
+        this.seats = new LinkedList<>();
+        this.steward = new LinkedList<>();
         this.pilots = new LinkedList<>();
-        this.stewards = new LinkedList<>();
-        this.seatGenerals = new LinkedList<>();
-        this.seatPremiums = new LinkedList<>();
-    }
-
-    public Airplane(String id, String origin, String destination) {
-        this.id = id;
-        this.origin = origin;
-        this.destination = destination;
     }
 
     public String getId() {
@@ -33,62 +27,70 @@ public class Airplane {
     public void setId(String id) {
         this.id = id;
     }
-    public String getOrigin() {
-        return origin;
-    }
-    public void setOrigin(String origin) {
-        this.origin = origin;
-    }
-    public String getDestination() {
-        return destination;
-    }
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-    public List<Passenger> getPassengers() {
-        return passengers;
-    }
-    public void asignSeatToPassenger(Passenger passenger,int numSeat,int type) {
-        this.passengers.add(passenger);
-        if (type == 1) {
-            this.seatGenerals.get(numSeat).setPassenger(passenger);
-        }else{
-            this.seatPremiums.get(numSeat).setPassenger(passenger);
-        }
+
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void removeFromSeat(int passengerIndex,int numSeat,int type){
-        this.passengers.remove(passengerIndex);
-        if (type == 1) {
-            this.seatGenerals.remove(numSeat);
-        }else{
-            this.seatPremiums.remove(numSeat);
-        }
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
+
+    public List<Seat> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(List<Seat> seats) {
+        this.seats = seats;
+    }
+
+    public List<Stewardess> getStewardess() {
+        return steward;
+    }
+
+    public void setStewardess(List<Stewardess> steward) {
+        this.steward = steward;
+    }
+
     public List<Pilot> getPilots() {
         return pilots;
     }
-    public void asignPilot(Pilot pilot){
-        this.pilots.add(pilot);
-    }
-    public List<Stewardess> getStewardess() {
-        return stewards;
-    }
-    public void asignStewardess(Stewardess steward){
-        this.stewards.add(steward);
-    }
-    public List<SeatGeneral> getSeatGenerals() {
-        return seatGenerals;
-    }
-    public List<SeatPremium> getSeatPremiums() {
-        return seatPremiums;
+
+    public void setPilots(List<Pilot> pilots) {
+        this.pilots = pilots;
     }
 
-    public void addSeatGeneral(SeatGeneral seatGeneral){
-        this.seatGenerals.add(seatGeneral);
-    }
-    public void addSeatPremium(SeatPremium seatPremium){
-        this.seatPremiums.add(seatPremium);
+    public Seat asignSeat(Passenger passenger, int number){
+        for(Seat seat : seats){
+            if(seat.getNumber()==number){
+                seat.setPassenger(passenger);
+                return seat;
+            }
+        }
+        return null;
     }
 
+    @Override
+    public String toString() {
+        return "Airplane{" +
+                "id='" + id + '\'' +
+                ", flight=" + flight +
+                ", seats=" + seats +
+                ", steward=" + steward +
+                ", pilots=" + pilots +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Airplane airplane = (Airplane) o;
+        return Objects.equals(id, airplane.id) && Objects.equals(flight, airplane.flight) && Objects.equals(seats, airplane.seats) && Objects.equals(steward, airplane.steward) && Objects.equals(pilots, airplane.pilots);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, flight, seats, steward, pilots);
+    }
 }

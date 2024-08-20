@@ -1,17 +1,21 @@
-package domain;
+package people;
+
+import domain.Airplane;
 
 import java.util.Date;
 
-public class AirplaneCrew extends Person{
+public abstract class AirplaneCrew extends Person {
     private Date dateStartedWorking;
     private int amountOfTripsDone;
+    private Airplane airplane;
 
     public AirplaneCrew(){}
 
-    public AirplaneCrew(String firstName, String lastName, Date birthDate, Date dateStartedWorking) {
+    public AirplaneCrew(String firstName, String lastName, Date birthDate, Date dateStartedWorking,Airplane airplane) {
         super(firstName,lastName,birthDate);
         this.dateStartedWorking = dateStartedWorking;
         this.amountOfTripsDone = 0;
+        this.airplane = airplane;
     }
 
     public Date getDateStartedWorking() {
@@ -31,4 +35,14 @@ public class AirplaneCrew extends Person{
     public void addOneMoreTrip(){
         this.amountOfTripsDone++;
     }
+
+    public Airplane getAirplane() {
+        return airplane;
+    }
+
+    public void setAirplane(Airplane airplane) {
+        this.airplane = airplane;
+    }
+
+    public abstract void anounceMessage();
 }

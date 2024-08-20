@@ -2,75 +2,80 @@ import domain.*;
 
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-        AirplaneCrew pilot1 = new Pilot();
-        pilot1.setBirthDate(new Date());
-        pilot1.setFirstName("James");
-        pilot1.setLastName("Doe");
-        pilot1.setAmountOfTripsDone(10);
-        pilot1.setDateStartedWorking(new Date());
-
-        AirplaneCrew pilot2 = new Pilot();
-        pilot2.setBirthDate(new Date());
-        pilot2.setFirstName("Bob");
-        pilot2.setLastName("Smith");
-        pilot2.setAmountOfTripsDone(20);
-        pilot2.setDateStartedWorking(new Date());
-
-        AirplaneCrew stewardess1 = new Stewardess();
-        stewardess1.setDateStartedWorking(new Date());
-        stewardess1.setAmountOfTripsDone(15);
-        stewardess1.setFirstName("Jeniffer");
-        stewardess1.setLastName("Smith");
-        stewardess1.setBirthDate(new Date());
-
-        AirplaneCrew stewardess2 = new Stewardess();
-        stewardess2.setDateStartedWorking(new Date());
-        stewardess2.setAmountOfTripsDone(5);
-        stewardess2.setFirstName("Laura");
-        stewardess2.setLastName("Rodriguez");
-        stewardess2.setBirthDate(new Date());
-
-        AirplaneCrew stewardess3 = new Stewardess();
-        stewardess3.setDateStartedWorking(new Date());
-        stewardess3.setAmountOfTripsDone(3);
-        stewardess3.setFirstName("Luisa");
-        stewardess3.setLastName("Doe");
-        stewardess3.setBirthDate(new Date());
-
-        Passenger passenger1 = new Passenger();
-        passenger1.setNationality("Mexico");
-        passenger1.setFirstName("James");
-        passenger1.setLastName("Doe");
-        passenger1.setBirthDate(new Date());
-        passenger1.setPassportCode("ALSJGPSOEJDLS");
-
-        Passenger passenger2 = new Passenger();
-        passenger2.setNationality("Mexico");
-        passenger2.setFirstName("Jaden");
-        passenger2.setLastName("Smith");
-        passenger2.setBirthDate(new Date());
-        passenger2.setPassportCode("GFHDGSFFDFGD");
-
-        Airplane airplane = new Airplane();
-        airplane.setId("LKJ-SDF");
-        airplane.setOrigin("Los Angeles");
-        airplane.setDestination("Mexico City");
-
-        for(int i=0;i<5;i++){
-            airplane.addSeatGeneral(new SeatGeneral(null,false,i+1,"NA"));
-            airplane.addSeatPremium(new SeatPremium(null,false,new LinkedList<>(),i+1));
-        }
-
-        airplane.asignSeatToPassenger(passenger1,1,1);
-        airplane.asignSeatToPassenger(passenger2,1,0);
+        City city = new City();
+        city.setName("Mexico");
+        City city2 = new City();
+        city2.setName("USA");
+        City city3 = new City();
+        city3.setName("Brasil");
+        City city4 = new City();
+        city4.setName("Guatemala");
+        City city5 = new City();
+        city5.setName("España");
+        City city6 = new City();
+        city6.setName("Roma");
 
         Airport airport = new Airport();
-        airport.setName("Airport LAX");
-        airport.setAddress("1 World Way, Los Angeles, CA 90045");
-        airport.addAirplane(airplane);
+        Flight flight1 = new Flight();
+        flight1.setLeaving(city);
+        flight1.setGoingTo(city2);
+        Flight flight2 = new Flight();
+        flight2.setLeaving(city2);
+        flight2.setGoingTo(city3);
+        Flight flight3 = new Flight();
+        flight3.setLeaving(city3);
+        flight3.setGoingTo(city4);
+        Flight flight4 = new Flight();
+        flight4.setLeaving(city4);
+        flight4.setGoingTo(city5);
+        Flight flight5 = new Flight();
+        flight5.setLeaving(city);
+        flight5.setGoingTo(city3);
+        Flight flight6 = new Flight();
+        flight6.setLeaving(city);
+        flight6.setGoingTo(city6);
+
+        Airplane airplane1 = new Airplane();
+        airplane1.setFlight(flight1);
+        Airplane airplane2 = new Airplane();
+        airplane2.setFlight(flight2);
+        Airplane airplane3 = new Airplane();
+        airplane3.setFlight(flight3);
+        Airplane airplane4 = new Airplane();
+        airplane4.setFlight(flight3);
+        Airplane airplane5 = new Airplane();
+        airplane5.setFlight(flight4);
+        Airplane airplane6 = new Airplane();
+        airplane6.setFlight(flight5);
+        Airplane airplane7 = new Airplane();
+        airplane7.setFlight(flight6);
+
+
+        airport.addAirplane(airplane1);
+        airport.addAirplane(airplane2);
+        airport.addAirplane(airplane3);
+        airport.addAirplane(airplane4);
+        airport.addAirplane(airplane5);
+        airport.addAirplane(airplane6);
+        airport.addAirplane(airplane7);
+
+        List<List<Flight>> flights = airport.getRoute(city,city5,4,0);
+        for (List<Flight> flightList : flights) {
+            if (flightList != null) {
+                for (Flight flight : flightList) {
+                    if (flight != null) {
+                        System.out.println(flight.getLeaving().getName() + " : " + flight.getGoingTo().getName());
+                    }else{
+                        System.out.println(flight);
+                    }
+                }
+                System.out.println("---------------------------------");
+            }
         }
     }
+}
