@@ -1,12 +1,11 @@
-import domain.*;
+import airport.*;
+import presentation.Menu;
 
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-
+/*
         City city = new City();
         city.setName("Mexico");
         City city2 = new City();
@@ -65,7 +64,10 @@ public class Main {
         airport.addAirplane(airplane7);
 
         List<List<Flight>> flights = airport.getRoute(city,city5,4,0);
+        int cont =1;
         for (List<Flight> flightList : flights) {
+            System.out.println("Flight "+cont+" ---------------------------------");
+            cont++;
             if (flightList != null) {
                 for (Flight flight : flightList) {
                     if (flight != null) {
@@ -74,8 +76,10 @@ public class Main {
                         System.out.println(flight);
                     }
                 }
-                System.out.println("---------------------------------");
             }
-        }
+            System.out.println();
+        }*/
+        Menu menu = new Menu();
+        menu.displayMenu();
     }
 }

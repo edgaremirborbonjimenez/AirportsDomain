@@ -1,4 +1,4 @@
-package domain;
+package airport;
 
 import people.Passenger;
 import people.Pilot;

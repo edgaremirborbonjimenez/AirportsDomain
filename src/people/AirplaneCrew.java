@@ -1,13 +1,13 @@
 package people;
 
-import domain.Airplane;
+import airport.Airplane;
 
 import java.util.Date;
 
 public abstract class AirplaneCrew extends Person {
-    private Date dateStartedWorking;
-    private int amountOfTripsDone;
-    private Airplane airplane;
+    protected Date dateStartedWorking;
+    protected int amountOfTripsDone;
+    protected Airplane airplane;
 
     public AirplaneCrew(){}
 

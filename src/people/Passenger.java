@@ -1,6 +1,6 @@
 package people;
 
-import domain.Ticket;
+import airport.Ticket;
 
 import java.util.List;
 import java.util.Objects;

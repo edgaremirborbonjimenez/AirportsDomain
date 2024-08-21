@@ -1,6 +1,6 @@
 package people;
 
-import domain.Airplane;
+import airport.Airplane;
 
 import java.util.Date;
 import java.util.Objects;

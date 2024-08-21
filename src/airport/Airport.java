@@ -1,6 +1,5 @@
-package domain;
+package airport;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -20,8 +19,12 @@ public class Airport {
         this.airplanes = airplanes;
     }
 
-    public void addAirplane(Airplane airplane) {
-        airplanes.add(airplane);
+    public Airplane addAirplane(Airplane airplane) {
+        if(airplanes.add(airplane)){
+            return airplane;
+        }else{
+            return null;
+        }
     }
 
     public Airplane getAirplaneById(String id) {
@@ -45,8 +48,8 @@ public class Airport {
             if(numRec==0){
                 routesStops = new LinkedList<>();
             }
-            System.out.println("We are leaving: "+leaving.getName());
-            System.out.println("Airplane leaves: "+airplane.getFlight().getLeaving().getName()+"- Arrives: "+airplane.getFlight().getGoingTo().getName()+"\n");
+//            System.out.println("We are leaving: "+leaving.getName());
+//            System.out.println("Airplane leaves: "+airplane.getFlight().getLeaving().getName()+"- Arrives: "+airplane.getFlight().getGoingTo().getName()+"\n");
 
             //if(airplane.getFlight().getLeaving().getName().equalsIgnoreCase(leaving.getName())){
                 if(airplane.getFlight().getLeaving().equals(leaving)){
@@ -75,6 +78,14 @@ public class Airport {
             }
         }
         return routes;
+    }
+
+    public double getRoutePrice(List<Flight> flights){
+        double price = 0;
+        for(Flight flight : flights){
+            price += flight.getPrice();
+        }
+        return price;
     }
 
     @Override

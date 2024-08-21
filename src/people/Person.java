@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Person {
-    private String firstName;
-    private String lastName;
-    private Date birthDate;
+    protected String firstName;
+    protected String lastName;
+    protected Date birthDate;
 
     public Person(){}
 

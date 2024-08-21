@@ -1,4 +1,4 @@
-package domain;
+package airport;
 
 import java.util.Objects;
 
