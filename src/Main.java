@@ -79,7 +79,11 @@ public class Main {
             }
             System.out.println();
         }*/
-        Menu menu = new Menu();
-        menu.displayMenu();
+        try {
+            Menu menu = new Menu();
+            menu.displayMenu();
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
